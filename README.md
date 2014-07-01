@@ -12,7 +12,7 @@ npm install turf-concave
 
 |name|description|
 |---|---|
-|points|A FeatureCollection of any Point Features|
+|points|A FeatureCollection of Point Features|
 |maxEdge|If an edge is longer than maxEdge miles, it will become a cave|
 
 ###Usage
