@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Turfjs/turf-concave",
   "devDependencies": {
+    "benchmark": "^1.0.0",
     "glob": "~4.0.2",
     "tape": "~2.13.3"
   },

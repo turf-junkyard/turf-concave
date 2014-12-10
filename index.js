@@ -3,12 +3,12 @@
 // 3. remove triangles that fail the max length test
 // 4. buffer the results slightly
 // 5. merge the results
-var t = {}
-t.tin = require('turf-tin')
-t.merge = require('turf-merge')
-t.buffer = require('turf-buffer')
-t.distance = require('turf-distance')
-t.point = require('turf-point')
+var t = {};
+t.tin = require('turf-tin');
+t.merge = require('turf-merge');
+t.buffer = require('turf-buffer');
+t.distance = require('turf-distance');
+t.point = require('turf-point');
 
 module.exports = function(points, maxEdge){
   var tinPolys,
@@ -22,14 +22,12 @@ module.exports = function(points, maxEdge){
     return tinPolys;
   }
 
-  filteredPolys = filterTriangles(tinPolys.features, maxEdge)
-  tinPolys.features = filteredPolys
+  filteredPolys = filterTriangles(tinPolys.features, maxEdge);
+  tinPolys.features = filteredPolys;
 
-  bufferPolys = t.buffer(tinPolys, 1, 'miles')
+  bufferPolys = t.buffer(tinPolys, 1, 'miles');
 
-  if (bufferPolys instanceof Error) {
-    return bufferPolys;
-  }
+  if (bufferPolys instanceof Error) return bufferPolys;
 
   mergePolys = t.merge(bufferPolys);
   return mergePolys;
