@@ -3,7 +3,7 @@ var test = require('tape');
 var glob = require('glob');
 var fs = require('fs');
 
-var REGEN = false;
+var REGEN = process.env.REGEN;
 
 test('intersect', function(t){
   glob.sync(__dirname + '/fixtures/in/*.geojson').forEach(function(input) {
@@ -12,7 +12,7 @@ test('intersect', function(t){
     if (REGEN) fs.writeFileSync(input.replace('/in/', '/out/'), JSON.stringify(output));
     t.ok(output);
     t.equal(output.geometry.type, 'MultiPolygon');
-    //t.deepEqual(output, JSON.parse(fs.readFileSync(input.replace('/in/', '/out/'))), input);
+    t.deepEqual(output, JSON.parse(fs.readFileSync(input.replace('/in/', '/out/'))), input);
   });
   t.end();
 });
