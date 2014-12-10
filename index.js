@@ -6,7 +6,6 @@
 var t = {};
 t.tin = require('turf-tin');
 t.merge = require('turf-merge');
-t.buffer = require('turf-buffer');
 t.distance = require('turf-distance');
 t.point = require('turf-point');
 
@@ -24,13 +23,7 @@ module.exports = function(points, maxEdge){
 
   filteredPolys = filterTriangles(tinPolys.features, maxEdge);
   tinPolys.features = filteredPolys;
-
-  bufferPolys = t.buffer(tinPolys, 1, 'miles');
-
-  if (bufferPolys instanceof Error) return bufferPolys;
-
-  mergePolys = t.merge(bufferPolys);
-  return mergePolys;
+  return t.merge(tinPolys);
 }
 
 var filterTriangles = function(triangles, maxEdge, cb){
