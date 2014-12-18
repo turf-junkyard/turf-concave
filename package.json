@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "turf-tin": "1.0.1",
-    "turf-merge": "1.0.0",
+    "turf-merge": "1.0.1",
     "turf-distance": "~1.0.0",
     "turf-point": "~1.2.0"
   }
