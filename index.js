@@ -13,21 +13,32 @@ t.point = require('turf-point');
  * Takes a set of points and
  * returns a concave hull
  *
- * Internally this implements
+ * Internally, this implements
  * a [Monotone chain algorithm](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript).
  *
  * @module turf/concave
- * @param {FeatureCollection} points a collection of Features with {@link Point}
- * geometries
+ * @param {FeatureCollection} points a FeatureCollection of {@link Point} features
  * @param {number} maxEdge the size of an edge necessary for part of the
- * hull to become concave. Given in miles.
- * @returns {Feature} output a feature with {@link Polygon} geometry
+ * hull to become concave (in miles)
+ * @returns {Feature} a {@link Polygon} feature
  * @example
- * var fs = require('fs')
- * var pts = JSON.parse(fs.readFileSync('/path/to/pts.geojson'))
- * var hull = turf.concave(pts)
- * console.log(hull)
+ * var points = turf.featurecollection([
+ *  turf.point(-63.601226, 44.642643),
+ *  turf.point(-63.591442, 44.651436),
+ *  turf.point(-63.580799, 44.648749),
+ *  turf.point(-63.573589, 44.641788),
+ *  turf.point(-63.587665, 44.64533),
+ *  turf.point(-63.595218, 44.64765)]);
+ *
+ * var hull = turf.concave(points, 1);
+ *
+ * var result = turf.featurecollection(
+ *  points.features.concat(hull));
+ *
+ * //=result
  */
+
+
 module.exports = function(points, maxEdge){
   var tinPolys,
     filteredPolys,
