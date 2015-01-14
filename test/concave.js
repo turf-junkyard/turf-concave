@@ -5,10 +5,13 @@ var fs = require('fs');
 
 var REGEN = process.env.REGEN;
 
-test('intersect', function(t){
+test('concave', function(t){
   glob.sync(__dirname + '/fixtures/in/*.geojson').forEach(function(input) {
     var fcs = JSON.parse(fs.readFileSync(input));
     var output = concave(fcs, 2.5);
+    t.throws(function() {
+        concave(fcs);
+    }, /maxEdge parameter is required/, 'requires maxEdge');
     if (REGEN) fs.writeFileSync(input.replace('/in/', '/out/'), JSON.stringify(output));
     t.ok(output);
     t.equal(output.geometry.type, 'MultiPolygon');

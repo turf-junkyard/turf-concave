@@ -21,6 +21,7 @@ t.point = require('turf-point');
  * @param {number} maxEdge the size of an edge necessary for part of the
  * hull to become concave (in miles)
  * @returns {Feature} a {@link Polygon} feature
+ * @throws {Error} if maxEdge parameter is missing
  * @example
  * var points = turf.featurecollection([
  *  turf.point(-63.601226, 44.642643),
@@ -39,32 +40,22 @@ t.point = require('turf-point');
  */
 
 
-module.exports = function(points, maxEdge){
-  var tinPolys,
-    filteredPolys,
-    bufferPolys,
-    mergePolys;
+module.exports = function(points, maxEdge) {
+  if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
 
-  tinPolys = t.tin(points, null);
-
-  if (tinPolys instanceof Error) {
-    return tinPolys;
-  }
-
-  filteredPolys = filterTriangles(tinPolys.features, maxEdge);
+  var tinPolys = t.tin(points, null);
+  var filteredPolys = tinPolys.features.filter(filterTriangles);
   tinPolys.features = filteredPolys;
-  return t.merge(tinPolys);
-}
 
-var filterTriangles = function(triangles, maxEdge, cb){
-  return triangles.filter(function (triangle) {
-    var pt1 = t.point(triangle.geometry.coordinates[0][0][0], triangle.geometry.coordinates[0][0][1])
-    var pt2 = t.point(triangle.geometry.coordinates[0][1][0], triangle.geometry.coordinates[0][1][1])
-    var pt3 = t.point(triangle.geometry.coordinates[0][2][0], triangle.geometry.coordinates[0][2][1])
+  function filterTriangles(triangle) {
+    var pt1 = t.point(triangle.geometry.coordinates[0][0][0], triangle.geometry.coordinates[0][0][1]);
+    var pt2 = t.point(triangle.geometry.coordinates[0][1][0], triangle.geometry.coordinates[0][1][1]);
+    var pt3 = t.point(triangle.geometry.coordinates[0][2][0], triangle.geometry.coordinates[0][2][1]);
     var dist1 = t.distance(pt1, pt2, 'miles');
     var dist2 = t.distance(pt2, pt3, 'miles');
     var dist3 = t.distance(pt1, pt3, 'miles');
-
     return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
-  })
-}
+  }
+
+  return t.merge(tinPolys);
+};
