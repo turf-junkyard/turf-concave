@@ -48,9 +48,9 @@ module.exports = function(points, maxEdge) {
   tinPolys.features = filteredPolys;
 
   function filterTriangles(triangle) {
-    var pt1 = t.point(triangle.geometry.coordinates[0][0][0], triangle.geometry.coordinates[0][0][1]);
-    var pt2 = t.point(triangle.geometry.coordinates[0][1][0], triangle.geometry.coordinates[0][1][1]);
-    var pt3 = t.point(triangle.geometry.coordinates[0][2][0], triangle.geometry.coordinates[0][2][1]);
+    var pt1 = t.point(triangle.geometry.coordinates[0][0]);
+    var pt2 = t.point(triangle.geometry.coordinates[0][1]);
+    var pt3 = t.point(triangle.geometry.coordinates[0][2]);
     var dist1 = t.distance(pt1, pt2, 'miles');
     var dist2 = t.distance(pt2, pt3, 'miles');
     var dist3 = t.distance(pt1, pt3, 'miles');
