@@ -24,12 +24,12 @@ t.point = require('turf-point');
  * @throws {Error} if maxEdge parameter is missing
  * @example
  * var points = turf.featurecollection([
- *  turf.point(-63.601226, 44.642643),
- *  turf.point(-63.591442, 44.651436),
- *  turf.point(-63.580799, 44.648749),
- *  turf.point(-63.573589, 44.641788),
- *  turf.point(-63.587665, 44.64533),
- *  turf.point(-63.595218, 44.64765)]);
+ *  turf.point([-63.601226, 44.642643]),
+ *  turf.point([-63.591442, 44.651436]),
+ *  turf.point([-63.580799, 44.648749]),
+ *  turf.point([-63.573589, 44.641788]),
+ *  turf.point([-63.587665, 44.64533]),
+ *  turf.point([-63.595218, 44.64765])]);
  *
  * var hull = turf.concave(points, 1);
  *
