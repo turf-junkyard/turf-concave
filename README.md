@@ -1,38 +1,61 @@
-turf-concave
-===============
+# turf-concave
+
 [![build status](https://secure.travis-ci.org/Turfjs/turf-concave.png)](http://travis-ci.org/Turfjs/turf-concave)
 
-###Install
+turf concave module
+
+
+### `turf.concave(points, maxEdge)`
+
+Takes a FeatureCollection of Point features and
+returns a concave hull.
+
+Internally, this implements
+a [Monotone chain algorithm](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript).
+
+
+### Parameters
+
+| parameter | type              | description                                                                     |
+| --------- | ----------------- | ------------------------------------------------------------------------------- |
+| `points`  | FeatureCollection | a FeatureCollection of Point features                                           |
+| `maxEdge` | number            | the size of an edge necessary for part of the hull to become concave (in miles) |
+
+
+### Example
+
+```js
+var points = turf.featurecollection([
+ turf.point([-63.601226, 44.642643]),
+ turf.point([-63.591442, 44.651436]),
+ turf.point([-63.580799, 44.648749]),
+ turf.point([-63.573589, 44.641788]),
+ turf.point([-63.587665, 44.64533]),
+ turf.point([-63.595218, 44.64765])
+]);
+
+var hull = turf.concave(points, 1);
+
+var result = turf.featurecollection(
+ points.features.concat(hull));
+
+//=result
+```
+
+
+**Returns** `Feature`, a Polygon feature
+
+## Installation
+
+Requires [nodejs](http://nodejs.org/).
 
 ```sh
-npm install turf-concave
+$ npm install turf-concave
 ```
 
-###Parameters
+## Tests
 
-|name|description|
-|---|---|
-|points|A FeatureCollection of Point Features|
-|maxEdge|If an edge is longer than maxEdge miles, it will become a cave|
-
-###Usage
-
-```js
-concave(pts, maxEdge)
+```sh
+$ npm test
 ```
 
-###Example
-
-Takes a set of points and returns a concave hull polygon.
-
-```js
-var concave = require('turf-concave')
-var fs = require('fs')
-
-var maxEdge = 2.5
-var pts = JSON.parse(fs.readFileSync('/path/to/pts.geojson'))
-  
-var hull = concave(pts, maxEdge)
-
-console.log(hull)
-```

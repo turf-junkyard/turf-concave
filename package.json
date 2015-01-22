@@ -4,7 +4,8 @@
   "description": "turf concave module",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "tape test/*.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
   },
   "repository": {
     "type": "git",
@@ -24,12 +25,14 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "glob": "~4.3.1",
-    "tape": "~3.0.3"
+    "tape": "~3.0.3",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.2"
   },
   "dependencies": {
-    "turf-tin": "1.0.1",
-    "turf-merge": "1.0.1",
-    "turf-distance": "~1.0.0",
-    "turf-point": "~1.2.0"
+    "turf-tin": "^1.0.2",
+    "turf-merge": "^1.0.1",
+    "turf-distance": "^1.0.0",
+    "turf-point": "^2.0.0"
   }
 }
