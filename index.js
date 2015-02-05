@@ -17,6 +17,7 @@ t.point = require('turf-point');
  * a [Monotone chain algorithm](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript).
  *
  * @module turf/concave
+ * @category transformation
  * @param {FeatureCollection} points a FeatureCollection of {@link Point} features
  * @param {number} maxEdge the size of an edge necessary for part of the
  * hull to become concave (in miles)
