@@ -7,7 +7,7 @@ var fcs = JSON.parse(fs.readFileSync(__dirname+'/test/fixtures/in/concaveIn2.geo
 var suite = new Benchmark.Suite('turf-concave');
 suite
   .add('turf-concave',function () {
-  	concave(fcs, 2.5);
+  	concave(fcs, 2.5, 'miles');
   })
   .on('cycle', function (event) {
     console.log(String(event.target));

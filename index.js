@@ -85,10 +85,12 @@ t.point = require('turf-point');
  */
 
 
-module.exports = function(points, maxEdge) {
+module.exports = function(points, maxEdge, units) {
   if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
+  console.log('units', typeof units)
+  if (typeof units !== 'string') throw new Error('units parameter is required');
 
-  var tinPolys = t.tin(points, null);
+  var tinPolys = t.tin(points);
   var filteredPolys = tinPolys.features.filter(filterTriangles);
   tinPolys.features = filteredPolys;
 
@@ -96,9 +98,9 @@ module.exports = function(points, maxEdge) {
     var pt1 = t.point(triangle.geometry.coordinates[0][0]);
     var pt2 = t.point(triangle.geometry.coordinates[0][1]);
     var pt3 = t.point(triangle.geometry.coordinates[0][2]);
-    var dist1 = t.distance(pt1, pt2, 'miles');
-    var dist2 = t.distance(pt2, pt3, 'miles');
-    var dist3 = t.distance(pt1, pt3, 'miles');
+    var dist1 = t.distance(pt1, pt2, units);
+    var dist2 = t.distance(pt2, pt3, units);
+    var dist3 = t.distance(pt1, pt3, units);
     return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
   }
 
