@@ -87,7 +87,6 @@ t.point = require('turf-point');
 
 module.exports = function(points, maxEdge, units) {
   if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
-  console.log('units', typeof units)
   if (typeof units !== 'string') throw new Error('units parameter is required');
 
   var tinPolys = t.tin(points);
