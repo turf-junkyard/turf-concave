@@ -24,13 +24,13 @@
   "homepage": "https://github.com/Turfjs/turf-concave",
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "glob": "~4.3.1",
-    "tape": "~3.0.3",
+    "glob": "~4.3.5",
+    "tape": "~3.5.0",
     "dox": "^0.6.1",
-    "doxme": "^1.4.2"
+    "doxme": "^1.4.3"
   },
   "dependencies": {
-    "turf-tin": "^1.0.2",
+    "turf-tin": "^1.0.5",
     "turf-merge": "^1.0.1",
     "turf-distance": "^1.0.0",
     "turf-point": "^2.0.0"
