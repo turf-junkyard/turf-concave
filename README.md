@@ -5,7 +5,7 @@
 turf concave module
 
 
-### `turf.concave(points, maxEdge)`
+### `turf.concave(points, maxEdge, units)`
 
 Takes a FeatureCollection of Point features and
 returns a concave hull.
@@ -20,6 +20,7 @@ a [Monotone chain algorithm](http://en.wikibooks.org/wiki/Algorithm_Implementati
 | --------- | ----------------- | ------------------------------------------------------------------------------- |
 | `points`  | FeatureCollection | a FeatureCollection of Point features                                           |
 | `maxEdge` | number            | the size of an edge necessary for part of the hull to become concave (in miles) |
+| `units`   | String            | used for maxEdge distance (miles or kilometers)                                 |
 
 
 ### Example

@@ -21,6 +21,7 @@ t.point = require('turf-point');
  * @param {FeatureCollection} points a FeatureCollection of {@link Point} features
  * @param {number} maxEdge the size of an edge necessary for part of the
  * hull to become concave (in miles)
+ * @param {String} units used for maxEdge distance (miles or kilometers)
  * @returns {Feature} a {@link Polygon} feature
  * @throws {Error} if maxEdge parameter is missing
  * @example
