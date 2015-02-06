@@ -75,7 +75,7 @@ var points = {
   ]
 };
 
-var hull = turf.concave(points, 1);
+var hull = turf.concave(points, 1, 'miles');
 
 var resultFeatures = points.features.concat(hull);
 var result = {
