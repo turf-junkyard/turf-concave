@@ -10,19 +10,18 @@ t.distance = require('turf-distance');
 t.point = require('turf-point');
 
 /**
- * Takes a {@link FeatureCollection} of {@link Point} features and
- * returns a concave hull.
+ * Takes point features and returns a concave hull.
  *
  * Internally, this implements
  * a [Monotone chain algorithm](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript).
  *
  * @module turf/concave
  * @category transformation
- * @param {FeatureCollection} points a FeatureCollection of {@link Point} features
- * @param {number} maxEdge the size of an edge necessary for part of the
+ * @param {FeatureCollection<Point>} points input points
+ * @param {Number} maxEdge the size of an edge necessary for part of the
  * hull to become concave (in miles)
  * @param {String} units used for maxEdge distance (miles or kilometers)
- * @returns {Feature} a {@link Polygon} feature
+ * @returns {Feature<Polygon>} a concave hull
  * @throws {Error} if maxEdge parameter is missing
  * @example
  * var points = {
