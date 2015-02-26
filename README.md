@@ -7,8 +7,7 @@ turf concave module
 
 ### `turf.concave(points, maxEdge, units)`
 
-Takes a FeatureCollection of Point features and
-returns a concave hull.
+Takes a set of Point|points and returns a concave hull polygon.
 
 Internally, this implements
 a [Monotone chain algorithm](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript).
@@ -16,11 +15,11 @@ a [Monotone chain algorithm](http://en.wikibooks.org/wiki/Algorithm_Implementati
 
 ### Parameters
 
-| parameter | type              | description                                                                     |
-| --------- | ----------------- | ------------------------------------------------------------------------------- |
-| `points`  | FeatureCollection | a FeatureCollection of Point features                                           |
-| `maxEdge` | number            | the size of an edge necessary for part of the hull to become concave (in miles) |
-| `units`   | String            | used for maxEdge distance (miles or kilometers)                                 |
+| parameter | type                         | description                                                                     |
+| --------- | ---------------------------- | ------------------------------------------------------------------------------- |
+| `points`  | FeatureCollection\.\<Point\> | input points                                                                    |
+| `maxEdge` | Number                       | the size of an edge necessary for part of the hull to become concave (in miles) |
+| `units`   | String                       | used for maxEdge distance (miles or kilometers)                                 |
 
 
 ### Example
@@ -87,7 +86,7 @@ var result = {
 ```
 
 
-**Returns** `Feature`, a Polygon feature
+**Returns** `Feature.<Polygon>`, a concave hull
 
 ## Installation
 
@@ -102,4 +101,5 @@ $ npm install turf-concave
 ```sh
 $ npm test
 ```
+
 
