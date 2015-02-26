@@ -10,7 +10,7 @@ t.distance = require('turf-distance');
 t.point = require('turf-point');
 
 /**
- * Takes a set of {@link Point|points} and returns a concave hull.
+ * Takes a set of {@link Point|points} and returns a concave hull polygon.
  *
  * Internally, this implements
  * a [Monotone chain algorithm](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript).
