@@ -12,8 +12,7 @@ t.point = require('turf-point');
 /**
  * Takes a set of {@link Point|points} and returns a concave hull polygon.
  *
- * Internally, this implements
- * a [Monotone chain algorithm](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain#JavaScript).
+ * Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
  *
  * @module turf/concave
  * @category transformation
