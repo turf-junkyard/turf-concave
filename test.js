@@ -1,11 +1,12 @@
 var concave = require('./');
 var test = require('tape');
 var fs = require('fs');
+var path = require('path');
 
-var pts1 = JSON.parse(fs.readFileSync(__dirname+'/fixtures/in/pts1.geojson'));
-var pts2 = JSON.parse(fs.readFileSync(__dirname+'/fixtures/in/pts2.geojson'));
+var pts1 = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/in/pts1.geojson')));
+var pts2 = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/in/pts2.geojson')));
 
-test('concave', function(t){
+test('concave', function (t) {
   var pts1HullMiles = concave(pts1, 5.5, 'miles');
   var pts1HullKilometers = concave(pts1, 5.5 * 1.60934, 'kilometers');
   t.ok(pts1HullMiles, 'computes hull');
@@ -27,13 +28,13 @@ test('concave', function(t){
   pts2HullMiles.properties.fill = '#00f';
   pts2HullMiles.properties['fill-opacity'] = .3;
   pts2.features.push(pts2HullMiles);
-  fs.writeFileSync(__dirname+'/fixtures/out/pts1_out.geojson', JSON.stringify(pts1,null,2));
-  fs.writeFileSync(__dirname+'/fixtures/out/pts2_out.geojson', JSON.stringify(pts2,null,2));
+  fs.writeFileSync(path.join(__dirname, 'fixtures/out/pts1_out.geojson'), JSON.stringify(pts1, null, 2));
+  fs.writeFileSync(path.join(__dirname, 'fixtures/out/pts2_out.geojson'), JSON.stringify(pts2, null, 2));
 
   t.end();
 });
 
-function stylePt(pt){
+function stylePt(pt) {
   pt.properties['marker-color'] = '#f0f';
   pt.properties['marker-size'] = 'small';
   return pt;
