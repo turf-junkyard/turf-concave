@@ -4,6 +4,7 @@
   "description": "turf concave module",
   "main": "index.js",
   "scripts": {
+    "pretest": "npm run lint",
     "test": "node test.js",
     "lint": "eslint index.js test.js",
     "doc": "dox -r < index.js | doxme --readme > README.md"
@@ -28,7 +29,6 @@
     "dox": "^0.6.1",
     "doxme": "^1.4.3",
     "eslint": "^1.10.3",
-    "eslint-config-mourner": "^1.0.1",
     "glob": "~4.3.5",
     "tape": "^4.3.0"
   },
