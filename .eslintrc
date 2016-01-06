@@ -1,8 +1,8 @@
 {
   "extends": "mourner",
   "rules": {
-    "strict": [2, "never"],
+    "strict": [1],
     "indent": [2, 2, {"SwitchCase": 1}],
-    "no-unreachable": [0]
+    "no-unreachable": [1]
   }
 }
