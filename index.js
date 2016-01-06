@@ -84,7 +84,7 @@ t.point = require('turf-point');
  */
 
 
-module.exports = function(points, maxEdge, units) {
+module.exports = function (points, maxEdge, units) {
   if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
   if (typeof units !== 'string') throw new Error('units parameter is required');
 
