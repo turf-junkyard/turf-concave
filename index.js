@@ -3,11 +3,8 @@
 // 3. remove triangles that fail the max length test
 // 4. buffer the results slightly
 // 5. merge the results
-var t = {};
-t.tin = require('turf-tin');
-t.merge = require('turf-merge');
-t.distance = require('turf-distance');
-t.point = require('turf-point');
+var concaveman = require('concaveman');
+var polygon = require('turf-polygon');
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull polygon.
@@ -22,6 +19,7 @@ t.point = require('turf-point');
  * @param {String} units used for maxEdge distance (miles or kilometers)
  * @returns {Feature<Polygon>} a concave hull
  * @throws {Error} if maxEdge parameter is missing
+ * @throws {Error} if units parameter is missing
  * @example
  * var points = {
  *   "type": "FeatureCollection",
@@ -83,24 +81,17 @@ t.point = require('turf-point');
  * //=result
  */
 
-
-module.exports = function(points, maxEdge, units) {
+module.exports = function(pointFC, maxEdge, units) {
   if (typeof maxEdge !== 'number') throw new Error('maxEdge parameter is required');
   if (typeof units !== 'string') throw new Error('units parameter is required');
 
-  var tinPolys = t.tin(points);
-  var filteredPolys = tinPolys.features.filter(filterTriangles);
-  tinPolys.features = filteredPolys;
+  // TO DO
+  // maxEdge -> concavity conversion
+  // units???
 
-  function filterTriangles(triangle) {
-    var pt1 = t.point(triangle.geometry.coordinates[0][0]);
-    var pt2 = t.point(triangle.geometry.coordinates[0][1]);
-    var pt3 = t.point(triangle.geometry.coordinates[0][2]);
-    var dist1 = t.distance(pt1, pt2, units);
-    var dist2 = t.distance(pt2, pt3, units);
-    var dist3 = t.distance(pt1, pt3, units);
-    return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
-  }
-
-  return t.merge(tinPolys);
+  var points = pointFC.features.map(function(feature) {
+    return feature.geometry.coordinates;
+  });
+  var hull = concaveman(points);
+  return polygon(hull);
 };
